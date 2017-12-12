@@ -1,0 +1,117 @@
+@import 'reset';
+// @import 'main';
+// font-family: 'Roboto', sans-serif;
+
+html {
+    font-family: 'Roboto', sans-serif;
+}
+
+header {
+    width: 100%;
+    height: 630px;
+    background-image: url('../images/pines.jpg');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+
+    .header-container {
+        max-width: 1366px;
+        width: 100%;
+        margin: 0 auto;
+        padding-top: 13px;
+        
+        a {
+            float: left;
+            padding-top: 10px;
+            font-size: 18px;
+            font-weight: 900;
+            text-decoration: none;
+            color: #333333;
+        }
+
+        .site-search {
+            float: right;
+            max-width: 485px;
+            width: 100%;
+            height: 25px;
+            padding: 0 20px;
+
+            background-color: rgba(255,255,255, 0.8);
+            border: 1px solid #000;
+            border-radius: 25px;
+            outline: none;
+            font-family:Arial, FontAwesome;
+        }
+    }
+}
+
+main {
+    max-width: 1152px;
+    width: 100%;
+    margin: 0 auto;
+    margin-top: -485px;
+    background-color: #fff;
+    border-radius: 15px;
+
+    .main-container {
+        max-width: 882px;
+        width: 100%;
+        margin: 0 auto;
+
+        .main-info {
+            .breadcrumbs {
+                margin-top: 22px;
+                margin-bottom: 36px;
+                font-size: 12px;
+
+                a {
+                    text-decoration: none;
+                    color: #000;
+                }
+
+                .active-manufacturer {
+                    color: #777;
+                }
+                span {
+                    color: #777;
+                    padding: 0 15px;
+                }
+            }
+            .gallery-container {
+                width: 310px;
+                float: left;
+                .active-image {
+                    // width: 310px;
+                    // height: 460px;
+                }
+            }
+            .info-container {
+                width: 325px;
+                float: right;
+
+                h2 {
+                    font-size: 23px;
+                    font-weight: 500;
+                }
+            }
+        }
+
+        .additional-info {
+            max-width: 855px;
+            width: 100%;
+            margin: 0 auto;
+            // ************************ remove
+            margin-top: 120px;
+
+            .additional-info-image {
+                width: 100%;
+                height: 220px;
+                background-image: url('../images/printed-circuit-board.jpg');
+                background-position: center;
+                background-size: cover;
+                background-repeat: no-repeat;
+                opacity: 0.7;
+            }
+        }
+    }
+}
