@@ -7,39 +7,134 @@
     <link rel="stylesheet" href="css/font-awesome.min.css">
     <link rel="stylesheet" href="css/styles.css">
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900&amp;subset=latin-ext" rel="stylesheet">
+    <script src="scripts/vue.min.js"></script>
+    <script src="scripts/vue-smooth-scroll.min.js"></script>
 </head>
 <body>
-    <header>
-        <div class="header-container cf">
-            <a href="http://www.vipnet.hr/">&#60; Povratak na nasolvnicu</a>
-            <input type="search" class="site-search" placeholder="&#xf002;">
-        </div>
-    </header>
-    <main>
-        <div class="main-container">
-            <div class="main-info cf">
-                <div class="breadcrumbs">
-                    <a href="#" class="active-manufacturer">iPhone</a>
-                    <span>></span>
-                    <a href="#" class="model">iPhone X</a>
-                </div>
-                <div class="gallery-container">
-                    <div class="active-image">
-                        <img src="./images/iphone8-b-resized.png" alt="phone-image">
+    <div id="app">
+        <header>
+            <div class="header-container cf">
+                <a href="http://www.vipnet.hr/">&#60; Povratak na nasolvnicu</a>
+                <input type="search" class="site-search" placeholder="&#xf002;">
+            </div>
+        </header>
+        <main>
+            <div class="main-container">
+                <div class="main-info cf">
+                    <div class="breadcrumbs">
+                        <a href="#" class="active-manufacturer">iPhone</a>
+                        <span>></span>
+                        <a href="#" class="model">iPhone X</a>
+                    </div>
+                    <div class="gallery-container">
+                        <div class="active-image">
+                            <img :src="active" alt="phone-image">
+                        </div>
+                        <div class="gallery-thumbs">
+                            <ul class="cf">
+                                <li v-for="image in images">
+                                    <a @click="activeImage(image.url)" :class="{ 'active-thumb': (active === image.url) }">
+                                        <img :src="image.url" alt="phone-image">
+                                        <div class="overlay"></div>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="info-container">
+                        <h2>Naziv uređaja</h2>
+                        <div class="user-review cf">
+                            <div class="rating">
+                                <i class="fa fa-star" aria-hidden="true"></i>
+                                <i class="fa fa-star" aria-hidden="true"></i>
+                                <i class="fa fa-star" aria-hidden="true"></i>
+                                <i class="fa fa-star" aria-hidden="true"></i>
+                                <i class="fa fa-star-o" aria-hidden="true"></i>
+                            </div>
+                            <div class="comments-no">
+                                <a href="#com" v-smooth-scroll="{ duration: 10}">{{ comments.length}} komentara</a>
+                            </div>
+                        </div>
+                        <div class="color specification-container">
+                            <span class="specification-title">Boja:</span>
+                            <ul>
+                                <!-- <li><span class="circle"></span></li> -->
+                                <!-- <li><span class="circle" :style="{ background-color: }"></span></li> -->
+                                <li v-for="device in devices"><span @click="colorSelect(device)" :style="{ 'background-color': device.colorHex }" class="circle"></span></li>
+                            </ul>
+                        </div>
+                        <div class="phone-storage specification-container">
+                            <span class="specification-title">Memorija:</span>
+                            <input type="radio" name="storage" value="64" checked>64 GB
+                            <input type="radio" name="storage" value="128">128 GB
+                            <input type="radio" name="storage" value="256">256 GB
+                        </div>
+                        <div class="additional-equipment specification-container">
+                            <span class="specification-title">Dodatna oprema:</span>
+                            <ul>
+                                <li><input type="checkbox" name="equipment" value="VR naočale">VR naočale</li>
+                                <li><input type="checkbox" name="equipment" value="Bežični punjač">Bežični punjač</li>
+                                <li><input type="checkbox" name="equipment" value="Narukvica UA Band">Narukvica UA Band</li>
+                                <li><input type="checkbox" name="equipment" value="Slušalice XY mega">Slušalice XY mega</li>
+                            </ul>
+                        </div>
+                        <div class="rate specification-container">
+                            <p class="specification-title">Tarifa:</p>
+                            <select name="rate-select">
+                                <option value="Mobilna S+">Mobilna S+</option>
+                                <option value="Mobilna M">Mobilna M</option>
+                                <option value="Mobilna L">Mobilna L</option>
+                            </select>
+                        </div>
                     </div>
                 </div>
-                <div class="info-container">
-                    <h2>Naziv uređaja</h2>
+                <div class="additional-info">
+                    <div class="additional-info-image"></div>
+                    <div class="additional-info-container">
+                        <h3>Dodatne informacije o uređaju:</h3>
+                        <table>
+                            <tr>
+                                <td><p><b>Baterija:</b></p></td>
+                                <td><p>2000mAh</p></td>
+                            </tr>
+                            <tr>
+                                <td><p><b>Procesor:</b></p></td>
+                                <td><p>Samsung</p></td>
+                            </tr>
+                            <tr>
+                                <td><p><b>Ekran:</b></p></td>
+                                <td><p>5.5"</p></td>
+                            </tr>
+                            <tr>
+                                <td><p><b>Poruke:</b></p></td>
+                                <td><p>SMS, MMS, Email</p></td>
+                            </tr>
+                            <tr>
+                                <td><p><b>Povezivost:</b></p></td>
+                                <td><p>Bluetooth, USB kabel, GPS</p></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <div class="comments" id="com">
+                    <h3>Komentari:</h3>
+                    <div class="comment cf" v-for="comment in comments">
+                        <div class="user-image"><img :src="comment.userImage" alt="User image"></div>
+                        <div class="title cf">
+                            <h4>{{ comment.commentTitle }}</h4>
+                            <div class="rating">
+                                <i v-for="rating in comment.phoneRating" class="fa fa-star" aria-hidden="true"></i>
+                            </div>
+                        </div>
+                        
+                        <div class="content">
+                            <p>{{ comment.commentContent }}</p>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="additional-info">
-                <div class="additional-info-image"></div>
-                <div class="additional-info-container">
-                    
-                </div>
-            </div>
-            <div class="comments"></div>
-        </div>
-    </main>
+        </main>
+    </div>
+    <script src="scripts/main.js"></script>
 </body>
 </html>
