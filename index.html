@@ -12,12 +12,17 @@
 </head>
 <body>
     <div id="app">
+        <!-- ********** SITE HEADER ********** -->
         <header>
             <div class="header-container cf">
                 <a href="http://www.vipnet.hr/">&#60; Povratak na nasolvnicu</a>
-                <input type="search" class="site-search" placeholder="&#xf002;">
+                <div class="search-container">
+                    <i class="fa fa-search" aria-hidden="true"></i>
+                    <input type="search" class="site-search" placeholder="">
+                </div>
             </div>
         </header>
+        <!-- ########## end of SITE HEADER ########## -->
         <main>
             <div class="main-container">
                 <div class="main-info cf">
@@ -26,6 +31,7 @@
                         <span>></span>
                         <a href="#" class="model">iPhone X</a>
                     </div>
+                    <!-- ********** PHONE GALLERY ********** -->
                     <div class="gallery-container">
                         <div class="active-image">
                             <img :src="active" alt="phone-image">
@@ -41,6 +47,8 @@
                             </ul>
                         </div>
                     </div>
+                    <!-- ########## end of PHONE GALLERY ########## -->
+                    <!-- ********** MAIN PHONE INFO ********** -->
                     <div class="info-container">
                         <h2>Naziv uređaja</h2>
                         <div class="user-review cf">
@@ -58,36 +66,57 @@
                         <div class="color specification-container">
                             <span class="specification-title">Boja:</span>
                             <ul>
-                                <!-- <li><span class="circle"></span></li> -->
-                                <!-- <li><span class="circle" :style="{ background-color: }"></span></li> -->
-                                <li v-for="device in devices"><span @click="colorSelect(device)" :style="{ 'background-color': device.colorHex }" class="circle"></span></li>
+                                <li v-for="device in devices">
+                                    <span  class="circle" 
+                                    @click="colorSelect(device)" 
+                                    :class="{ 'active-device-color': (device.color === selectedColor) }" 
+                                    :style="{ 'background-color': device.colorHex }"></span>
+                                </li>
                             </ul>
                         </div>
                         <div class="phone-storage specification-container">
                             <span class="specification-title">Memorija:</span>
-                            <input type="radio" name="storage" value="64" checked>64 GB
-                            <input type="radio" name="storage" value="128">128 GB
-                            <input type="radio" name="storage" value="256">256 GB
+                            <input @change="priceCalc" v-model="selectedStorage" type="radio" name="storage" value="64" checked>64 GB
+                            <input @change="priceCalc" v-model="selectedStorage" type="radio" name="storage" value="128">128 GB
+                            <input @change="priceCalc" v-model="selectedStorage" type="radio" name="storage" value="256">256 GB
                         </div>
                         <div class="additional-equipment specification-container">
                             <span class="specification-title">Dodatna oprema:</span>
                             <ul>
-                                <li><input type="checkbox" name="equipment" value="VR naočale">VR naočale</li>
-                                <li><input type="checkbox" name="equipment" value="Bežični punjač">Bežični punjač</li>
-                                <li><input type="checkbox" name="equipment" value="Narukvica UA Band">Narukvica UA Band</li>
-                                <li><input type="checkbox" name="equipment" value="Slušalice XY mega">Slušalice XY mega</li>
+                                <li><input @change="priceCalc" v-model="selectedEquipment" type="checkbox" name="equipment" value="1000">VR naočale</li>
+                                <li><input @change="priceCalc" v-model="selectedEquipment" type="checkbox" name="equipment" value="500">Bežični punjač</li>
+                                <li><input @change="priceCalc" v-model="selectedEquipment" type="checkbox" name="equipment" value="300">Narukvica UA Band</li>
+                                <li><input @change="priceCalc" v-model="selectedEquipment" type="checkbox" name="equipment" value="800">Slušalice XY mega</li>
                             </ul>
                         </div>
                         <div class="rate specification-container">
                             <p class="specification-title">Tarifa:</p>
-                            <select name="rate-select">
-                                <option value="Mobilna S+">Mobilna S+</option>
-                                <option value="Mobilna M">Mobilna M</option>
-                                <option value="Mobilna L">Mobilna L</option>
+                            <select @change="priceCalc();rateChange();" v-model="selectedRate" name="rate-select">
+                                <option value="100">Mobilna S+</option>
+                                <option value="500">Mobilna M</option>
+                                <option value="1000">Mobilna L</option>
                             </select>
+                            <div class="tooltip-container">
+                                <i class="fa fa-info-circle info-tooltip" aria-hidden="true">
+                                    <span class="tooltiptext" v-if="tooltipText">
+                                        {{ tooltipText.calls }} <br>
+                                        {{ tooltipText.internet }} <br>
+                                        {{ tooltipText.sms }} <br>
+                                    </span>
+                                </i>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="price specification-container">
+                            <transition name="slide-fade" mode="out-in">
+                                <p :key="total">Cijena uređaja: <b>{{ total }} kn</b></p>
+                            </transition>
+                            <button>KUPI</button>
                         </div>
                     </div>
+                    <!-- ########## end of MAIN PHONE INFO ########## -->
                 </div>
+                <!-- ********** ADDITTIONAL PHONE INFO CONTAINER ********** -->
                 <div class="additional-info">
                     <div class="additional-info-image"></div>
                     <div class="additional-info-container">
@@ -116,6 +145,8 @@
                         </table>
                     </div>
                 </div>
+                <!-- ########## end of ADDITTIONAL PHONE INFO CONTAINER ########## -->
+                <!-- ********** PHONE USER COMMENTS SECTION ********** -->
                 <div class="comments" id="com">
                     <h3>Komentari:</h3>
                     <div class="comment cf" v-for="comment in comments">
@@ -132,6 +163,7 @@
                         </div>
                     </div>
                 </div>
+                <!-- ########## end of PHONE USER COMMENTS SECTION ########## -->
             </div>
         </main>
     </div>

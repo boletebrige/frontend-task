@@ -61,6 +61,16 @@ table {
 html {
   font-family: 'Roboto', sans-serif; }
 
+.slide-fade-enter-active {
+  transition: all .3s ease; }
+
+.slide-fade-leave-active {
+  transition: all 0.3s cubic-bezier(1, 0.5, 0.8, 1); }
+
+.slide-fade-enter, .slide-fade-leave-to {
+  transform: translateX(10px);
+  opacity: 0; }
+
 header {
   width: 100%;
   height: 630px;
@@ -72,26 +82,40 @@ header {
     max-width: 1366px;
     width: 100%;
     margin: 0 auto;
-    padding-top: 13px; }
+    padding-top: 20px; }
+    @media screen and (max-width: 1366px) {
+      header .header-container {
+        width: 95%; } }
     header .header-container a {
       float: left;
-      padding-top: 10px;
       font-size: 20px;
       font-weight: 500;
       text-decoration: none;
       color: #333333; }
-    header .header-container .site-search {
+    header .header-container .search-container {
+      position: relative;
       float: right;
       max-width: 485px;
-      width: 100%;
-      height: 25px;
-      padding: 0 20px;
-      background-color: rgba(255, 255, 255, 0.8);
-      border-radius: 25px;
-      outline: none;
-      font-family: Arial, FontAwesome;
-      border: 1px solid #fff;
-      box-shadow: 0 0 4px 0px rgba(0, 0, 0, 0.8); }
+      width: 100%; }
+      @media screen and (max-width: 768px) {
+        header .header-container .search-container {
+          margin: 0 auto;
+          margin-top: 35px;
+          max-width: 100%;
+          float: none; } }
+      header .header-container .search-container i {
+        position: absolute;
+        margin: 4.5px 15px;
+        color: #333; }
+      header .header-container .search-container .site-search {
+        width: 100%;
+        height: 25px;
+        padding: 0 40px;
+        background-color: rgba(255, 255, 255, 0.8);
+        border-radius: 25px;
+        outline: none;
+        border: 1px solid #fff;
+        box-shadow: 0 0 4px 0px rgba(0, 0, 0, 0.8); }
 
 main {
   max-width: 1152px;
@@ -101,12 +125,27 @@ main {
   background-color: #fff;
   border-radius: 15px;
   box-shadow: 0 0 7px 0px rgba(0, 0, 0, 0.8); }
+  @media screen and (max-width: 1366px) {
+    main {
+      margin-top: -520px; } }
+  @media screen and (max-width: 1152px) {
+    main {
+      max-width: 960px; } }
+  @media screen and (max-width: 980px) {
+    main {
+      max-width: 95%; } }
   main .main-container {
     max-width: 882px;
     width: 100%;
     margin: 0 auto;
     padding-bottom: 100px;
     margin-bottom: 50px; }
+    @media screen and (max-width: 1152px) {
+      main .main-container {
+        max-width: 800px; } }
+    @media screen and (max-width: 980px) {
+      main .main-container {
+        max-width: 90%; } }
     main .main-container .main-info .breadcrumbs {
       margin-top: 22px;
       margin-bottom: 36px;
@@ -176,6 +215,8 @@ main {
       main .main-container .main-info .info-container .specification-container {
         margin: 20px 0;
         font-weight: 300; }
+        main .main-container .main-info .info-container .specification-container:last-child {
+          margin-bottom: 0; }
         main .main-container .main-info .info-container .specification-container .specification-title {
           font-size: 18px;
           font-weight: 700;
@@ -188,7 +229,7 @@ main {
           float: left;
           margin-right: 10px;
           font-size: 20px;
-          color: #f2b01e; }
+          color: #fdb913; }
         main .main-container .main-info .info-container .user-review .comments-no {
           float: left;
           margin-left: 20px; }
@@ -213,7 +254,14 @@ main {
               background-color: #000;
               border: 2px solid #8f8f8f;
               cursor: pointer;
-              box-shadow: 0 0 7px 0px rgba(0, 0, 0, 0.8); }
+              box-shadow: 0 0 7px 0px rgba(0, 0, 0, 0.8);
+              -webkit-transition: box-shadow 0.5s ease-in-out;
+              /* For Safari 3.1 to 6.0 */
+              transition: box-shadow 0.5s ease-in-out; }
+              main .main-container .main-info .info-container .color ul li .circle:hover {
+                box-shadow: none; }
+            main .main-container .main-info .info-container .color ul li .active-device-color {
+              box-shadow: none; }
       main .main-container .main-info .info-container .phone-storage input {
         margin-left: 10px; }
       main .main-container .main-info .info-container .additional-equipment ul {
@@ -226,6 +274,66 @@ main {
         padding: 5px 20px;
         margin: 15px 0 0 35px;
         outline: none; }
+      main .main-container .main-info .info-container .rate .tooltip-container {
+        position: relative;
+        display: inline-block; }
+        main .main-container .main-info .info-container .rate .tooltip-container .info-tooltip {
+          margin-left: 15px;
+          font-size: 22px;
+          vertical-align: middle;
+          color: #333;
+          cursor: pointer; }
+          main .main-container .main-info .info-container .rate .tooltip-container .info-tooltip:hover .tooltiptext {
+            visibility: visible;
+            opacity: 1; }
+          main .main-container .main-info .info-container .rate .tooltip-container .info-tooltip .tooltiptext {
+            visibility: hidden;
+            position: absolute;
+            font-size: 10px;
+            line-height: 14px;
+            font-family: 'Roboto', sans-serif;
+            width: 115px;
+            text-align: left;
+            background-color: #555;
+            color: #fff;
+            padding: 5px 0;
+            padding-left: 25px;
+            border-radius: 6px;
+            z-index: 1;
+            opacity: 0;
+            -webkit-transition: opacity 1s ease-in-out;
+            /* For Safari 3.1 to 6.0 */
+            transition: opacity 1s ease-in-out;
+            top: -14px;
+            left: 125%; }
+            main .main-container .main-info .info-container .rate .tooltip-container .info-tooltip .tooltiptext:after {
+              content: "";
+              position: absolute;
+              top: 50%;
+              right: 100%;
+              margin-top: -5px;
+              border-width: 5px;
+              border-style: solid;
+              border-color: transparent #555 transparent transparent; }
+      main .main-container .main-info .info-container .price {
+        margin-right: 13px;
+        color: #333333; }
+        main .main-container .main-info .info-container .price p {
+          text-align: right;
+          font-size: 24px; }
+          main .main-container .main-info .info-container .price p b {
+            font-weight: 700; }
+        main .main-container .main-info .info-container .price button {
+          width: 100%;
+          height: 50px;
+          margin-top: 50px;
+          background-color: #ee2d24;
+          border: none;
+          font-size: 22px;
+          font-weight: 700;
+          color: #fff;
+          outline: none;
+          cursor: pointer; }
     main .main-container .additional-info {
       max-width: 855px;
       width: 100%;
@@ -285,11 +393,14 @@ main {
             width: 100%;
             font-size: 18px;
             line-height: 22px; }
+            @media screen and (max-width: 1152px) {
+              main .main-container .comments .comment .title h4 {
+                max-width: 490px; } }
           main .main-container .comments .comment .title .rating {
             float: right;
             margin-right: 25px;
             font-size: 18px;
-            color: #f2b01e; }
+            color: #fdb913; }
             main .main-container .comments .comment .title .rating i {
               padding-left: 5px; }
         main .main-container .comments .comment .content {

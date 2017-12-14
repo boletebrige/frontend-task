@@ -3,6 +3,7 @@ var app = new Vue({
     el: '#app',
     data: {
         active: '',
+        // device images according to selected color
         devices: [
             { 
                 color: 'black',
@@ -32,11 +33,9 @@ var app = new Vue({
                 ]
             }
         ],
-        images: [
-            { url: './images/iphone8-b-resized.png'},
-            { url: './images/iphone8-b-b-resized.png'},
-            { url: './images/iphone8-b-s-resized.png'}
-        ],
+        // array of phone images for selected phone color
+        images: [],
+        // user comments array
         comments: [
             { 
                 userImage: './images/user-image.png',
@@ -56,20 +55,73 @@ var app = new Vue({
                 commentTitle: 'Super mobitel, brz i pouzdan!',
                 commentContent: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit.'
             }
-        ]
+        ],
+        selectedColor: null,
+        // default selected phone storage
+        selectedStorage: 64,
+        // available phone storage with price
+        phoneStorage: [
+            { storage: 64, price: 1799 },
+            { storage: 128, price: 2799 },
+            { storage: 256, price: 3799 }
+        ],
+        // array for selected equipment
+        selectedEquipment: [],
+        // default selected rate
+        selectedRate: 100,
+        // rate info for tooltip
+        tooltipRate: [
+            { rateId: '100', calls: 'Neograničeno poziva', sms: '200 SMS poruka', internet: '2GB interneta' },
+            { rateId: '500', calls: 'Neograničeno poziva', sms: '500 SMS poruka', internet: '5GB interneta'},
+            { rateId: '1000', calls: 'Neograničeno poziva', sms: '1000 SMS poruka', internet: 'Neograničeno interneta'}
+        ],
+        // selected rate tooltip
+        tooltipText: null,
+        total: null
     },
     methods: {
+        // setting image from thumbnail
         activeImage(image){
             this.active = image;
         },
+        // getting device images by selected color
         colorSelect(device){
-            console.log(device);
             this.images = device.images;
             this.active = this.images[0].url;
+            this.selectedColor = device.color;
+            console.log(this.selectedColor);
+        },
+        // filling tooltip with selected rate info
+        rateChange(){
+            var that = this;
+            var rateInfo = this.tooltipRate.filter(function(el){
+                if(el.rateId == that.selectedRate ){
+                    return el;
+                }
+            });
+            this.tooltipText = rateInfo[0];
+        },
+        // callculating price by selected equipment, phone storage and rate
+        priceCalc(){
+            var that = this;
+            var equipmetCost = 0;
+            var tempPrice = this.phoneStorage.filter(function(el){
+                if(el.storage == that.selectedStorage ){
+                    return el;
+                }
+            });
+            this.selectedEquipment.forEach(function(el){
+                equipmetCost += Number(el);
+            });
+            this.total = equipmetCost + tempPrice[0].price - this.selectedRate;
+
         }
     },
     mounted(){
         this.active = this.devices[0].images[0].url;
         this.images = this.devices[0].images;
+        this.selectedColor = this.devices[0].color;
+        this.rateChange();
+        this.priceCalc();
     }
 })
