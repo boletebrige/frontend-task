@@ -4,11 +4,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Vipnet</title>
-    <link rel="stylesheet" href="css/font-awesome.min.css">
-    <link rel="stylesheet" href="css/styles.css">
-    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900&amp;subset=latin-ext" rel="stylesheet">
-    <script src="scripts/vue.min.js"></script>
-    <script src="scripts/vue-smooth-scroll.min.js"></script>
+    <link rel="stylesheet" href="./css/font-awesome.min.css">
+    <link rel="stylesheet" href="./css/styles.css">
+    <script src="./scripts/vue.min.js"></script>
+    <script src="./scripts/vue-smooth-scroll.min.js"></script>
 </head>
 <body>
     <div id="app">
@@ -29,7 +28,7 @@
                     <div class="breadcrumbs">
                         <a href="#" class="active-manufacturer">iPhone</a>
                         <span>></span>
-                        <a href="#" class="model">iPhone X</a>
+                        <a href="#" class="model">iPhone 8</a>
                     </div>
                     <!-- ********** PHONE GALLERY ********** -->
                     <div class="gallery-container">
@@ -50,7 +49,7 @@
                     <!-- ########## end of PHONE GALLERY ########## -->
                     <!-- ********** MAIN PHONE INFO ********** -->
                     <div class="info-container">
-                        <h2>iPhone X</h2>
+                        <h2>iPhone 8</h2>
                         <div class="user-review cf">
                             <div class="rating">
                                 <i class="fa fa-star" aria-hidden="true"></i>
@@ -122,26 +121,12 @@
                     <div class="additional-info-container">
                         <h3>Dodatne informacije o uređaju:</h3>
                         <table>
-                            <tr>
-                                <td><p><b>Baterija:</b></p></td>
-                                <td><p>2000mAh</p></td>
-                            </tr>
-                            <tr>
-                                <td><p><b>Procesor:</b></p></td>
-                                <td><p>Samsung</p></td>
-                            </tr>
-                            <tr>
-                                <td><p><b>Ekran:</b></p></td>
-                                <td><p>5.5"</p></td>
-                            </tr>
-                            <tr>
-                                <td><p><b>Poruke:</b></p></td>
-                                <td><p>SMS, MMS, Email</p></td>
-                            </tr>
-                            <tr>
-                                <td><p><b>Povezivost:</b></p></td>
-                                <td><p>Bluetooth, USB kabel, GPS</p></td>
-                            </tr>
+                            <tbody>
+                                <tr v-for="specification in specifications">
+                                    <td><p><b>{{ specification.name }}</b></p></td>
+                                    <td><p>{{ specification.value }}</p></td>
+                                </tr>
+                            </tbody>
                         </table>
                     </div>
                 </div>
@@ -167,6 +152,6 @@
             </div>
         </main>
     </div>
-    <script src="scripts/main.js"></script>
+    <script src="./scripts/main.js"></script>
 </body>
 </html>

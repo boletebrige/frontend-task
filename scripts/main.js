@@ -77,7 +77,21 @@ var app = new Vue({
         ],
         // selected rate tooltip
         tooltipText: null,
-        total: null
+        total: null,
+        specifications: [
+            { name: 'Prijenos podataka', value: 'GPRS, HSDPA 42.2, EDGE, LTE Cat11 600 Mbps DL, UMTS, HSUPA 5.76'},
+            { name: 'OPERATIVNI SUSTAV', value: 'iOS'},
+            { name: 'Verzija OS -a', value: '11'},
+            { name: 'Povezivost', value: 'Bluetooth, Sinkronizacija s racunalom, USB kabel, WLAN, GPS' },
+            { name: 'Zaslon', value: '5.5" FHD retina kapacitivni dodirni zaslon razlučivosti 1080 x 1920 piksela'},
+            { name: 'Kamera', value: '12 Mpx'},
+            { name: 'Dodatne značajke', value: '	Povećana otpornost na vodu i prašinu - IP67, dvostruka kamera 12MP, stereo zvučnici, najnapredniji A11 Bionic čip, bežično punjenje'},
+            { name: 'Memorija telefona', value: 'Korisnička i sistemska memorija 64GB'},
+            { name: 'Memorijska kartica - tip utora', value: 'ne podržava'},
+            { name: 'Baterija - tip', value: 'Li-Ion'},
+            { name: 'Baterija - kapacitet', value: '2675 mAh'},
+            { name: 'Tip SIM kartice', value: 'Nano'}
+        ]
     },
     methods: {
         // setting image from thumbnail
