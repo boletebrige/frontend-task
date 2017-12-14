@@ -7,15 +7,16 @@ html {
 }
 .slide-fade-enter-active {
     transition: all .3s ease;
-  }
-  .slide-fade-leave-active {
+}
+.slide-fade-leave-active {
     transition: all .3s cubic-bezier(1.0, 0.5, 0.8, 1.0);
-  }
-  .slide-fade-enter, .slide-fade-leave-to
-  /* .slide-fade-leave-active for <2.1.8 */ {
+}
+.slide-fade-enter, .slide-fade-leave-to
+/* .slide-fade-leave-active for <2.1.8 */ {
     transform: translateX(10px);
     opacity: 0;
-  }
+}
+
 // ********** SITE HEADER **********
 header {
     width: 100%;
@@ -43,6 +44,12 @@ header {
             font-weight: 500;
             text-decoration: none;
             color: #333333;
+            opacity: 1;
+            -webkit-transition: opacity 0.5s ease-in-out; /* For Safari 3.1 to 6.0 */
+            transition: opacity 0.5s ease-in-out;
+            &:hover {
+                opacity: 0.8;
+            }
         }
         .search-container {
             position: relative;
@@ -72,6 +79,12 @@ header {
                 //**********************
                 border: 1px solid #fff;
                 box-shadow: 0 0 4px 0px rgba(0, 0, 0, 0.8);
+                -webkit-transition: box-shadow 0.5s ease-in-out; /* For Safari 3.1 to 6.0 */
+                transition: box-shadow 0.5s ease-in-out;
+                &:focus {
+                    box-shadow: none;
+                    border: 1px solid #333;
+                }
             }
         }
     }
@@ -404,6 +417,46 @@ main {
                         color: #fff;
                         outline: none;
                         cursor: pointer;
+                        position: relative;
+                        overflow: hidden;
+                        -webkit-transition: box-shadow 0.5s ease-in-out; /* For Safari 3.1 to 6.0 */
+                        transition: box-shadow 0.5s ease-in-out;
+
+                        &:hover {
+                            box-shadow: 0 0 10px 0px rgba(0, 0, 0, 0.8);
+                        }
+                    }
+                    button:after {
+                        content: '';
+                        position: absolute;
+                        top: 50%;
+                        left: 50%;
+                        width: 5px;
+                        height: 5px;
+                        background: rgba(0, 0, 0, .2);
+                        opacity: 0;
+                        border-radius: 100%;
+                        transform: scale(1, 1) translate(-50%);
+                        transform-origin: 50% 50%;
+                    }
+                      
+                    @keyframes ripple {
+                        0% {
+                            transform: scale(0, 0);
+                            opacity: 1;
+                        }
+                        20% {
+                            transform: scale(25, 25);
+                            opacity: 1;
+                        }
+                        100% {
+                            opacity: 0;
+                            transform: scale(60, 60);
+                        }
+                    }
+                      
+                    button:focus:not(:active)::after {
+                        animation: ripple 1s ease-out;
                     }
                 }
             }
