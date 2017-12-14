@@ -102,21 +102,18 @@ main {
         max-width: 882px;
         width: 100%;
         margin: 0 auto;
+        padding-bottom: 22.5px;
+        margin-bottom: 90px;
+
         @media screen and (max-width: 1152px) {
             max-width: 800px;
         }
         @media screen and (max-width: 980px) {
             max-width: 90%;
         }
-
-        // **********
-        padding-bottom: 100px;
-        margin-bottom: 50px;
-
         .main-info {
             .breadcrumbs {
-                margin-top: 22px;
-                margin-bottom: 36px;
+                margin: 20px 0;
                 font-size: 12px;
 
                 a {
@@ -136,9 +133,27 @@ main {
             .gallery-container {
                 width: 310px;
                 float: left;
+                @media screen and (max-width: 768px) {
+                    float: none;
+                    margin: 0 auto;
+                    margin-bottom: 30px;
+                }
+                @media screen and (max-width: 359px) {
+                    margin-left: -6.5%;
+                }
                 .active-image {
                     // width: 310px;
                     // height: 460px;
+                    img {
+                        @media screen and (max-width: 768px) {
+                            max-height: 400px;
+                            margin: 0 auto;
+                            display: block;
+                        }
+                        @media screen and (max-width: 359px) {
+                            max-height: 380px;
+                        }
+                    }
                 }
                 .gallery-thumbs {
                     ul {
@@ -199,6 +214,12 @@ main {
                 width: 325px;
                 float: right;
 
+                @media screen and (max-width: 768px) {
+                    float: none;
+                    margin: 0 auto;
+                    width: 100%;
+                }
+
                 h2 {
                     // font-size: 23px;
                     font-size: 26px;
@@ -217,6 +238,10 @@ main {
                         font-size: 18px;
                         font-weight: 700;
                         color: #333333;
+                        @media screen and (max-width: 768px) {
+                            display: block;
+                            margin-bottom: 20px;
+                        }
                     }
                     input {
                         outline: none;
@@ -298,6 +323,9 @@ main {
                         padding: 5px 20px;
                         margin: 15px 0 0 35px;
                         outline: none;
+                        @media screen and (max-width: 768px) {
+                            margin-left: 0;
+                        }
                     }
                     .tooltip-container {
                         position: relative;
@@ -333,6 +361,10 @@ main {
                                 transition: opacity 1s ease-in-out;
                                 top: -14px;
                                 left: 125%;
+                                @media screen and (max-width: 359px) {
+                                    width: 100px;
+                                    padding-left: 15px;
+                                }
                                 &:after {
                                     content: "";
                                     position: absolute;
@@ -351,6 +383,9 @@ main {
                 .price {
                     margin-right: 13px;
                     color: #333333;
+                    @media screen and (max-width: 768px) {
+                        margin-right: 0;
+                    }
                     p {
                         text-align: right;
                         font-size: 24px;
@@ -384,6 +419,10 @@ main {
             box-shadow: 0 2px 7px 0px rgba(0, 0, 0, 0.8);
             margin-top: 120px;
 
+            @media screen and (max-width: 768px) {
+                margin-top: 60px;
+            }
+
             .additional-info-image {
                 width: 100%;
                 height: 220px;
@@ -406,6 +445,9 @@ main {
                 }
                 table {
                     margin-left: 35px;
+                    @media screen and (max-width: 768px) {
+                        margin-left: 0;
+                    }
                     p{
                         color: #333333;
                         font-size: 16px;
@@ -435,6 +477,10 @@ main {
                 margin: 45px 0 22.5px 90px;
 
                 box-shadow: 0 2px 7px 0px rgba(0, 0, 0, 0.8);
+
+                @media screen and (max-width: 768px) {
+                    margin-left: 0;
+                }
                 .user-image {
                     position: absolute;
                     top: -15px;
@@ -446,10 +492,17 @@ main {
                         border-radius: 50%;
                         border: 1px solid #777;
                     }
+                    @media screen and (max-width: 768px) {
+                        top: -35px;
+                        left: calc(50% - 35px);
+                    }
                 }
                 
                 .title {
                     margin: 20px 0 30px 85px;
+                    @media screen and (max-width: 768px) {
+                        margin: 50px 20px 10px 30px;
+                    }
                     h4 {
                         float: left;
                         max-width: 550px;
@@ -459,12 +512,22 @@ main {
                         @media screen and (max-width: 1152px) {
                             max-width: 490px;
                         }
+                        @media screen and (max-width: 768px) {
+                            max-width: 100%;
+                            padding-bottom: 10px;
+                        }
                     }
                     .rating {
                         float: right;
                         margin-right: 25px;
                         font-size: 18px;
                         color: #fdb913;
+                        @media screen and (max-width: 768px) {
+                            float: none;
+                            text-align: center;
+                            margin-right: 0;
+                        
+                        }
                         i{ 
                             padding-left: 5px;
                         }

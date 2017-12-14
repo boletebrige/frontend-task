@@ -138,8 +138,8 @@ main {
     max-width: 882px;
     width: 100%;
     margin: 0 auto;
-    padding-bottom: 100px;
-    margin-bottom: 50px; }
+    padding-bottom: 22.5px;
+    margin-bottom: 90px; }
     @media screen and (max-width: 1152px) {
       main .main-container {
         max-width: 800px; } }
@@ -147,8 +147,7 @@ main {
       main .main-container {
         max-width: 90%; } }
     main .main-container .main-info .breadcrumbs {
-      margin-top: 22px;
-      margin-bottom: 36px;
+      margin: 20px 0;
       font-size: 12px; }
       main .main-container .main-info .breadcrumbs a {
         text-decoration: none;
@@ -161,6 +160,22 @@ main {
     main .main-container .main-info .gallery-container {
       width: 310px;
       float: left; }
+      @media screen and (max-width: 768px) {
+        main .main-container .main-info .gallery-container {
+          float: none;
+          margin: 0 auto;
+          margin-bottom: 30px; } }
+      @media screen and (max-width: 359px) {
+        main .main-container .main-info .gallery-container {
+          margin-left: -6.5%; } }
+      @media screen and (max-width: 768px) {
+        main .main-container .main-info .gallery-container .active-image img {
+          max-height: 400px;
+          margin: 0 auto;
+          display: block; } }
+      @media screen and (max-width: 359px) {
+        main .main-container .main-info .gallery-container .active-image img {
+          max-height: 380px; } }
       main .main-container .main-info .gallery-container .gallery-thumbs ul li {
         float: left;
         margin: 0 calc(55px / 6); }
@@ -208,6 +223,11 @@ main {
     main .main-container .main-info .info-container {
       width: 325px;
       float: right; }
+      @media screen and (max-width: 768px) {
+        main .main-container .main-info .info-container {
+          float: none;
+          margin: 0 auto;
+          width: 100%; } }
       main .main-container .main-info .info-container h2 {
         font-size: 26px;
         font-weight: 700;
@@ -221,6 +241,10 @@ main {
           font-size: 18px;
           font-weight: 700;
           color: #333333; }
+          @media screen and (max-width: 768px) {
+            main .main-container .main-info .info-container .specification-container .specification-title {
+              display: block;
+              margin-bottom: 20px; } }
         main .main-container .main-info .info-container .specification-container input {
           outline: none; }
       main .main-container .main-info .info-container .user-review {
@@ -274,6 +298,9 @@ main {
         padding: 5px 20px;
         margin: 15px 0 0 35px;
         outline: none; }
+        @media screen and (max-width: 768px) {
+          main .main-container .main-info .info-container .rate select {
+            margin-left: 0; } }
       main .main-container .main-info .info-container .rate .tooltip-container {
         position: relative;
         display: inline-block; }
@@ -306,6 +333,10 @@ main {
             transition: opacity 1s ease-in-out;
             top: -14px;
             left: 125%; }
+            @media screen and (max-width: 359px) {
+              main .main-container .main-info .info-container .rate .tooltip-container .info-tooltip .tooltiptext {
+                width: 100px;
+                padding-left: 15px; } }
             main .main-container .main-info .info-container .rate .tooltip-container .info-tooltip .tooltiptext:after {
               content: "";
               position: absolute;
@@ -318,6 +349,9 @@ main {
       main .main-container .main-info .info-container .price {
         margin-right: 13px;
         color: #333333; }
+        @media screen and (max-width: 768px) {
+          main .main-container .main-info .info-container .price {
+            margin-right: 0; } }
         main .main-container .main-info .info-container .price p {
           text-align: right;
           font-size: 24px; }
@@ -341,6 +375,9 @@ main {
       margin-bottom: 50px;
       box-shadow: 0 2px 7px 0px rgba(0, 0, 0, 0.8);
       margin-top: 120px; }
+      @media screen and (max-width: 768px) {
+        main .main-container .additional-info {
+          margin-top: 60px; } }
       main .main-container .additional-info .additional-info-image {
         width: 100%;
         height: 220px;
@@ -358,6 +395,9 @@ main {
           font-weight: 700; }
         main .main-container .additional-info .additional-info-container table {
           margin-left: 35px; }
+          @media screen and (max-width: 768px) {
+            main .main-container .additional-info .additional-info-container table {
+              margin-left: 0; } }
           main .main-container .additional-info .additional-info-container table p {
             color: #333333;
             font-size: 16px;
@@ -376,6 +416,9 @@ main {
         position: relative;
         margin: 45px 0 22.5px 90px;
         box-shadow: 0 2px 7px 0px rgba(0, 0, 0, 0.8); }
+        @media screen and (max-width: 768px) {
+          main .main-container .comments .comment {
+            margin-left: 0; } }
         main .main-container .comments .comment .user-image {
           position: absolute;
           top: -15px;
@@ -385,8 +428,15 @@ main {
           main .main-container .comments .comment .user-image img {
             border-radius: 50%;
             border: 1px solid #777; }
+          @media screen and (max-width: 768px) {
+            main .main-container .comments .comment .user-image {
+              top: -35px;
+              left: calc(50% - 35px); } }
         main .main-container .comments .comment .title {
           margin: 20px 0 30px 85px; }
+          @media screen and (max-width: 768px) {
+            main .main-container .comments .comment .title {
+              margin: 50px 20px 10px 30px; } }
           main .main-container .comments .comment .title h4 {
             float: left;
             max-width: 550px;
@@ -396,11 +446,20 @@ main {
             @media screen and (max-width: 1152px) {
               main .main-container .comments .comment .title h4 {
                 max-width: 490px; } }
+            @media screen and (max-width: 768px) {
+              main .main-container .comments .comment .title h4 {
+                max-width: 100%;
+                padding-bottom: 10px; } }
           main .main-container .comments .comment .title .rating {
             float: right;
             margin-right: 25px;
             font-size: 18px;
             color: #fdb913; }
+            @media screen and (max-width: 768px) {
+              main .main-container .comments .comment .title .rating {
+                float: none;
+                text-align: center;
+                margin-right: 0; } }
             main .main-container .comments .comment .title .rating i {
               padding-left: 5px; }
         main .main-container .comments .comment .content {
